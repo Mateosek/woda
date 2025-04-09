@@ -1,0 +1,851 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.app-container {
+    max-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+main {
+    flex: 1;
+    padding: 1rem;
+    padding-bottom: 4.5rem; /* Dodatkowy padding na dole, aby treść nie była zasłaniana przez przypięty pasek nawigacyjny */
+    overflow-y: auto;
+}
+
+/* Section styles */
+.section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: none; /* Hidden by default */
+}
+
+.section.active {
+    display: block;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: #4a90e2;
+    font-weight: 500;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="number"],
+input[type="time"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Button styles */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.primary {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.primary:hover {
+    background-color: #3a80d2;
+}
+
+/* Dashboard summary styles */
+.dashboard-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.summary-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #e3f2fd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.summary-icon i {
+    color: #4a90e2;
+    font-size: 1.2rem;
+}
+
+.summary-content h3 {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0 0 0.3rem 0;
+    font-weight: normal;
+}
+
+.summary-value {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Water progress styles */
+.water-progress {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.water-container {
+    width: 150px;
+    height: 200px;
+    margin: 0 auto 1rem;
+    border: 3px solid #4a90e2;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f5f7fa;
+}
+
+.water-level {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%; /* Will be updated by JS */
+    background-color: #4a90e2;
+    transition: height 0.5s ease-out;
+}
+
+.progress-info {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4a90e2;
+}
+
+/* Quick add section */
+.quick-add-section {
+    margin: 2rem 0;
+}
+
+.quick-add-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.quick-add-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+}
+
+.quick-add-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e3f2fd;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-add-btn:hover {
+    background-color: #bbdefb;
+}
+
+.quick-add-btn.clicked {
+    transform: scale(0.95);
+    background-color: #bbdefb;
+}
+
+.quick-add-btn i {
+    color: #4a90e2;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.quick-add-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4a90e2;
+}
+
+/* Recent activities */
+.recent-activities {
+    margin: 2rem 0;
+}
+
+.recent-activities h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.recent-entries-list {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+/* Water options */
+.water-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.water-option {
+    padding: 0.8rem;
+    background-color: #e3f2fd;
+    border: 1px solid #4a90e2;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #4a90e2;
+    cursor: pointer;
+}
+
+.water-option:hover {
+    background-color: #bbdefb;
+}
+
+.custom-amount {
+    grid-column: span 3;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+#custom-amount {
+    flex: 1;
+}
+
+#add-custom {
+    padding: 0.8rem 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* History section */
+.entries-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.date-header {
+    background-color: #f0f7ff;
+    color: #4a90e2;
+    font-weight: 500;
+    padding: 0.6rem 0.8rem;
+    border-radius: 4px 4px 0 0;
+    margin-top: 1rem;
+    border-bottom: 2px solid #4a90e2;
+}
+
+.entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    border-bottom: 1px solid #eee;
+}
+
+.entry-time {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.entry-amount {
+    font-weight: 500;
+    color: #4a90e2;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.notification.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-20px);
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.notification p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.notification.info {
+    border-left: 4px solid #4a90e2;
+}
+
+.notification.success {
+    border-left: 4px solid #4CAF50;
+}
+
+.notification.warning {
+    border-left: 4px solid #FF9800;
+}
+
+.notification.error {
+    border-left: 4px solid #F44336;
+}
+
+.dismiss-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0.3rem;
+    margin-left: 0.5rem;
+}
+
+.dismiss-btn:hover {
+    color: #333;
+}
+
+/* Statistics section */
+.stats-tabs {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.stats-tab-btn {
+    flex: 1;
+    padding: 0.8rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-weight: 500;
+    color: #777;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats-tab-btn i {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.stats-tab-btn.active {
+    color: #4a90e2;
+    border-bottom-color: #4a90e2;
+}
+
+.stats-tab-content {
+    display: none;
+    padding: 1rem 0;
+}
+
+.stats-tab-content.active {
+    display: block;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 1.5rem;
+}
+
+.stats-summary {
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.stats-summary p {
+    margin: 0 0 0.8rem 0;
+    font-weight: 500;
+    color: #333;
+}
+
+.stats-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stats-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-label {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.3rem;
+}
+
+.stats-value {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #4a90e2;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding: 0.8rem 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #777;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.nav-btn i {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.nav-btn.active {
+    color: #4a90e2;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.notification-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 80%;
+}
+
+.notification-icon {
+    font-size: 3rem;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+}
+
+.notification p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+#dismiss-notification {
+    padding: 0.8rem 2rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Reminder styles */
+.reminders-list {
+    margin-top: 20px;
+}
+
+.reminder-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.reminder-time {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.reminder-note {
+    color: #666;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.reminder-days {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.day-indicator {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.day-indicator.active {
+    background-color: #4caf50;
+    color: white;
+}
+
+.delete-reminder {
+    background: none;
+    border: none;
+    color: #ff5252;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.reminder-form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.weekday-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.weekday-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.weekday-label:hover {
+    background-color: #d0d0d0;
+}
+
+.weekday-checkbox {
+    margin: 0;
+}
+
+.weekday-checkbox:checked + .weekday-label {
+    background-color: #4caf50;
+    color: white;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.no-reminders {
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Utility classes */
+.hidden {
+    display: none !important;
+}
+
+/* Stats section styles */
+.chart-container {
+    height: 300px;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.chart-info {
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #777;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: #4a90e2;
+    border-bottom-color: #4a90e2;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.weekly-averages {
+    margin: 2rem 0;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.weekly-averages h3 {
+    font-size: 1.2rem;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.weekly-averages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+}
+
+.week-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.week-header {
+    font-weight: 500;
+    color: #777;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.week-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #4a90e2;
+    margin-bottom: 0.3rem;
+}
+
+.week-info {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.stat-item {
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4a90e2;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.stat-comparison {
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    color: #777;
+}
+
+.change-positive {
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+.change-negative {
+    color: #F44336;
+    font-weight: 500;
+}
+
+.change-neutral {
+    color: #777;
+    font-weight: 500;
+}
+
+.export-section {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .app-container {
+        max-width: 500px;
+        margin: 0 auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.reminder-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-height: 80px;
+    resize: vertical;
+}
+
+.reminder-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.3rem 0;
+    font-style: italic;
+}
